@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vivek Narendra Saindane - Software Engineer Portfolio. Exploring projects, technical skills, experiences, and academic achievements.">
+  <meta name="author" content="Vivek Narendra Saindane">
+  <title>Vivek Narendra Saindane | Software Engineer Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind/CSS Files -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  
+  <!-- Background Glow Orbs -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-accent">&lt;</span>Vivek<span class="logo-accent"> /&gt;</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-sm btn-outline">Let's Connect</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <i data-lucide="menu" class="menu-icon"></i>
+        <i data-lucide="x" class="close-icon hidden"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-nav-overlay" id="nav-overlay"></div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-container animate-fade-in">
+            <span class="pulse-dot"></span>
+            <span class="badge-text">Available for Opportunities</span>
+          </div>
+          
+          <h1 class="hero-title animate-slide-up">
+            Hi, I'm <span class="gradient-text" id="hero-name">Vivek Saindane</span>
+          </h1>
+          
+          <div class="typewriter-container animate-slide-up-delay-1">
+            <span class="static-txt">I am a</span>
+            <span class="dynamic-txt gradient-text-secondary" id="typewriter"></span>
+            <span class="cursor">|</span>
+          </div>
+          
+          <p class="hero-bio animate-slide-up-delay-2" id="hero-bio">
+            Loading professional profile...
+          </p>
+          
+          <div class="hero-actions animate-slide-up-delay-3">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="#" id="resume-download-btn" class="btn btn-secondary" target="_blank" download>
+              <i data-lucide="download"></i>
+              <span>Get Resume</span>
+            </a>
+          </div>
+          
+          <div class="social-links-hero animate-slide-up-delay-4" id="social-links-hero">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+        
+        <div class="hero-visual animate-zoom-in">
+          <div class="visual-wrapper">
+            <div class="avatar-card">
+              <div class="avatar-ring ring-1"></div>
+              <div class="avatar-ring ring-2"></div>
+              <div class="avatar-inner">
+                <i data-lucide="terminal" class="visual-icon"></i>
+              </div>
+            </div>
+            <!-- Interactive stats banner -->
+            <div class="floating-badge stat-badge-1">
+              <i data-lucide="code-2" class="stat-icon"></i>
+              <div>
+                <span class="stat-num">4+</span>
+                <span class="stat-lbl">Projects</span>
+              </div>
+            </div>
+            <div class="floating-badge stat-badge-2">
+              <i data-lucide="briefcase" class="stat-icon"></i>
+              <div>
+                <span class="stat-num">2</span>
+                <span class="stat-lbl">Internships</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <a href="#about" aria-label="Scroll to About Section">
+          <span class="mouse">
+            <span class="wheel"></span>
+          </span>
+          <span class="arrow"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- About & Education Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About Me</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">My educational background and professional journey</p>
+        </div>
+        
+        <div class="about-grid">
+          <div class="about-info-card glass-card">
+            <h3 class="card-title">Professional Summary</h3>
+            <p id="about-detailed-bio">Loading bio details...</p>
+            
+            <div class="personal-details-list" id="personal-details-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+          
+          <div class="education-card glass-card">
+            <h3 class="card-title">Education</h3>
+            <div class="timeline" id="education-timeline">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">Technologies and methodologies I work with</p>
+        </div>
+        
+        <div class="skills-grid" id="skills-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">Real-world applications and projects I have developed</p>
+        </div>
+        
+        <!-- Project Filter Controls -->
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="Mobile">Mobile Apps</button>
+          <button class="filter-btn" data-filter="AI/ML">AI / Deep Learning</button>
+          <button class="filter-btn" data-filter="Web & API">Web & API</button>
+        </div>
+        
+        <div class="projects-grid" id="projects-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Work Experience</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">Professional internships and industrial work</p>
+        </div>
+        
+        <div class="experience-timeline" id="experience-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements & Certifications Section -->
+    <section id="achievements" class="section achievements-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Achievements & Certifications</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">Key highlights of my technical milestones</p>
+        </div>
+        
+        <div class="achievements-grid">
+          <div class="achievements-card glass-card">
+            <h3 class="card-title">
+              <i data-lucide="trophy" class="title-icon text-gold"></i>
+              <span>Key Achievements</span>
+            </h3>
+            <ul class="achievement-list" id="achievements-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+          
+          <div class="certifications-card glass-card">
+            <h3 class="card-title">
+              <i data-lucide="award" class="title-icon text-cyan"></i>
+              <span>Certifications</span>
+            </h3>
+            <ul class="certification-list" id="certifications-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="section-underline"></div>
+          <p class="section-subtitle">Have a question or want to discuss opportunities? Let's connect!</p>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-info glass-card">
+            <h3 class="card-title">Contact Information</h3>
+            <p class="contact-desc">
+              Feel free to reach out via email, phone, or connect with me on professional networks. I'll get back to you as soon as possible!
+            </p>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon-wrapper">
+                  <i data-lucide="mail"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:viveksaindane71@gmail.com" class="contact-value" id="contact-email">viveksaindane71@gmail.com</a>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon-wrapper">
+                  <i data-lucide="phone"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">Phone</span>
+                  <a href="tel:+918830869055" class="contact-value" id="contact-phone">+91 8830869055</a>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon-wrapper">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div class="contact-text">
+                  <span class="contact-label">Location</span>
+                  <span class="contact-value" id="contact-location">Jalgaon, Maharashtra, India</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="social-links-contact" id="social-links-contact">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+          
+          <div class="contact-form-container glass-card">
+            <h3 class="card-title">Send a Message</h3>
+            
+            <form id="contact-form" class="contact-form" action="#" method="POST">
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="name">Your Name *</label>
+                  <input type="text" id="name" name="name" placeholder="John Doe" required>
+                  <span class="error-message" id="name-error"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Your Email *</label>
+                  <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                  <span class="error-message" id="email-error"></span>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Placement Opportunity / Collaboration">
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                <span class="error-message" id="message-error"></span>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                <span>Send Message</span>
+                <i data-lucide="send"></i>
+              </button>
+              
+              <div class="form-alert hidden" id="form-alert">
+                <!-- Success or error message -->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p class="copyright">&copy; <span id="current-year">2026</span> Vivek Narendra Saindane. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button for Top Scroll -->
+  <button id="btn-back-to-top" class="btn-floating" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="portfolio-data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
