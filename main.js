@@ -101,26 +101,6 @@ function renderHero() {
           <span class="contact-value" id="contact-location">${info.location}</span>
         </div>
       </div>
-
-      <div class="contact-item">
-        <div class="contact-icon-wrapper">
-          <i data-lucide="linkedin"></i>
-        </div>
-        <div class="contact-text">
-          <span class="contact-label">LinkedIn</span>
-          <a href="${info.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-value" id="contact-linkedin">${info.linkedin.split('/in/')[1] || 'LinkedIn'}</a>
-        </div>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-icon-wrapper">
-          <i data-lucide="github"></i>
-        </div>
-        <div class="contact-text">
-          <span class="contact-label">GitHub</span>
-          <a href="${info.github}" target="_blank" rel="noopener noreferrer" class="contact-value" id="contact-github">${info.github.split('/').filter(Boolean).pop() || 'GitHub'}</a>
-        </div>
-      </div>
     `;
   }
 }
@@ -163,20 +143,6 @@ function renderAboutAndEducation() {
         <div class="detail-info">
           <span class="detail-lbl">Degree</span>
           <span class="detail-val">B.E. ECE (2026)</span>
-        </div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-icon-box"><i data-lucide="linkedin"></i></div>
-        <div class="detail-info">
-          <span class="detail-lbl">LinkedIn</span>
-          <a href="${info.linkedin}" target="_blank" rel="noopener noreferrer" class="detail-val">${info.linkedin.split('/in/')[1] || 'LinkedIn'}</a>
-        </div>
-      </div>
-      <div class="detail-item">
-        <div class="detail-icon-box"><i data-lucide="github"></i></div>
-        <div class="detail-info">
-          <span class="detail-lbl">GitHub</span>
-          <a href="${info.github}" target="_blank" rel="noopener noreferrer" class="detail-val">${info.github.split('/').filter(Boolean).pop() || 'GitHub'}</a>
         </div>
       </div>
     `;
