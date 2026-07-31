@@ -8,8 +8,8 @@ const portfolioData = {
     location: "Jalgaon, Maharashtra, India",
     github: "https://github.com/MAJOR-NOUVEL",
     linkedin: "https://linkedin.com/in/vivek-saindane71",
-    resumeUrl: "resume.pdf", // Expected to be in the root directory or linked online
-    web3formsKey: "YOUR_ACCESS_KEY_HERE", // Get a free access key from https://web3forms.com to receive form submissions in your email
+    resumeUrl: "https://drive.google.com/file/d/16YOckpjMUXPwUPEZqiDwXVTOTWw2k_i1/view?usp=drive_link",
+    web3formsKey: "4345f0bc-a21c-47fd-b841-06edb245aa85", // Get a free access key from https://web3forms.com to receive form submissions in your email
     bio: "Motivated Software Engineer (graduating 2026, ECE) with hands-on experience in full-stack application development, REST APIs, and database-driven systems. Proficient in C++, Python, JavaScript, and SQL with strong foundations in Data Structures & Algorithms, OOP, DBMS, Operating Systems, and Computer Networks. Eager to contribute to large-scale software engineering projects and build scalable solutions."
   },
   skills: [

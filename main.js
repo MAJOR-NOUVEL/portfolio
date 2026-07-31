@@ -513,7 +513,7 @@ function initContactForm() {
     const accessKey = info.web3formsKey;
     
     // Check if user has set up their Web3Forms key
-    if (!accessKey || accessKey === '4345f0bc-a21c-47fd-b841-06edb245aa85') {
+    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
       // Simulate submission & warn user to update their access key
       setTimeout(() => {
         alertBox.innerHTML = `<strong>Demo Success!</strong> Thank you, ${nameInput.value}. Your message was validated.<br><small style="color:var(--text-secondary)">To receive this message directly in your personal inbox, get a free Access Key from <a href="https://web3forms.com" target="_blank" style="color:var(--secondary);text-decoration:underline">web3forms.com</a> and paste it into <code>web3formsKey</code> inside <code>portfolio-data.js</code>.</small>`;
