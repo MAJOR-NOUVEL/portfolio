@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollEffects();
   initProjectFilters();
   initContactForm();
+  initScrollReveal();
+  initCustomCursor();
 
   // Initialize Lucide Icons initially and after modifications
   lucide.createIcons();
@@ -151,8 +153,8 @@ function renderAboutAndEducation() {
   // Education timeline
   const timeline = document.getElementById('education-timeline');
   if (timeline) {
-    timeline.innerHTML = portfolioData.education.map(edu => `
-      <div class="timeline-item">
+    timeline.innerHTML = portfolioData.education.map((edu, index) => `
+      <div class="timeline-item reveal-on-scroll" style="transition-delay: ${index * 0.1}s">
         <div class="timeline-marker"></div>
         <span class="timeline-period">${edu.period}</span>
         <h4 class="timeline-title">${edu.degree}</h4>
@@ -180,10 +182,10 @@ function renderSkills() {
     "Tools & Practices": "settings"
   };
   
-  container.innerHTML = portfolioData.skills.map(skillGroup => {
+  container.innerHTML = portfolioData.skills.map((skillGroup, index) => {
     const icon = iconMap[skillGroup.category] || "layers";
     return `
-      <div class="skill-category-card glass-card">
+      <div class="skill-category-card glass-card reveal-on-scroll" style="transition-delay: ${index * 0.08}s">
         <h3 class="skill-category-title">
           <i data-lucide="${icon}"></i>
           <span>${skillGroup.category}</span>
@@ -210,8 +212,8 @@ function renderProjects(filter = 'all') {
     return;
   }
   
-  container.innerHTML = filteredProjects.map(project => `
-    <div class="project-card glass-card" data-category="${project.category}">
+  container.innerHTML = filteredProjects.map((project, index) => `
+    <div class="project-card glass-card reveal-on-scroll" data-category="${project.category}" style="transition-delay: ${index * 0.08}s">
       <span class="project-badge-cat">${project.category}</span>
       <h3 class="project-title">${project.title}</h3>
       <h4 class="project-subtitle">${project.subtitle}</h4>
@@ -244,6 +246,8 @@ function renderProjects(filter = 'all') {
   
   // Re-trigger icon parsing
   lucide.createIcons();
+  if (window.refreshScrollReveal) window.refreshScrollReveal();
+  if (window.updateCursorHoverListeners) window.updateCursorHoverListeners();
 }
 
 // Render Work Experience
@@ -251,10 +255,10 @@ function renderExperience() {
   const container = document.getElementById('experience-container');
   if (!container) return;
   
-  container.innerHTML = portfolioData.experience.map(exp => `
+  container.innerHTML = portfolioData.experience.map((exp, index) => `
     <div class="exp-item">
-      <div class="exp-marker"></div>
-      <div class="exp-card glass-card">
+      <div class="exp-marker animate-pulse-glow"></div>
+      <div class="exp-card glass-card reveal-on-scroll" style="transition-delay: ${index * 0.12}s">
         <div class="exp-header">
           <div>
             <h3 class="exp-role">${exp.role}</h3>
@@ -265,6 +269,14 @@ function renderExperience() {
         <ul class="exp-desc">
           ${exp.description.map(desc => `<li>${desc}</li>`).join('')}
         </ul>
+        ${exp.certificateUrl ? `
+          <div class="exp-cert-wrapper">
+            <a href="${exp.certificateUrl}" target="_blank" rel="noopener noreferrer" class="exp-cert-link">
+              <i data-lucide="award"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+        ` : ''}
       </div>
     </div>
   `).join('');
@@ -394,11 +406,9 @@ function initScrollEffects() {
     
     // Navbar background scroll state
     if (scrollPosition > 50) {
-      navbar.style.background = 'rgba(3, 0, 20, 0.9)';
-      navbar.style.height = '70px';
+      navbar.classList.add('scrolled');
     } else {
-      navbar.style.background = 'rgba(3, 0, 20, 0.7)';
-      navbar.style.height = '80px';
+      navbar.classList.remove('scrolled');
     }
     
     // Back to top floating button visibility
@@ -612,3 +622,108 @@ function initContactForm() {
     });
   });
 }
+
+// ==========================================
+// 3. SCROLL-REVEAL OBSERVER
+// ==========================================
+function initScrollReveal() {
+  const options = {
+    root: null,
+    rootMargin: '0px -10% -10% 0px', // Trigger slightly before element is fully visible
+    threshold: 0.05
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+  
+  // Helper to query and observe all elements
+  function observeElements() {
+    const revealables = document.querySelectorAll('.reveal-on-scroll');
+    revealables.forEach(el => observer.observe(el));
+  }
+  
+  // Run initially
+  observeElements();
+  
+  // Expose it to re-run on dynamic render
+  window.refreshScrollReveal = observeElements;
+}
+
+// ==========================================
+// 4. CUSTOM TRAILING CURSOR EFFECT
+// ==========================================
+function initCustomCursor() {
+  // Disable custom cursor on mobile/touch screens
+  if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) {
+    return;
+  }
+  
+  const glow = document.getElementById('custom-cursor-glow');
+  if (!glow) return;
+  
+  // Show cursor element
+  glow.style.display = 'block';
+  
+  const speed = 0.14; // Lerp factor
+  
+  let mouse = { x: -100, y: -100 };
+  let glowPos = { x: -100, y: -100 };
+  
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  
+  function animate() {
+    // Glow position lags with lerp
+    glowPos.x += (mouse.x - glowPos.x) * speed;
+    glowPos.y += (mouse.y - glowPos.y) * speed;
+    
+    // Position using 3d translation and offset center
+    glow.style.transform = `translate3d(${glowPos.x}px, ${glowPos.y}px, 0) translate(-50%, -50%)`;
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+  
+  const addHoverClass = () => {
+    glow.classList.add('cursor-hover');
+  };
+  
+  const removeHoverClass = () => {
+    glow.classList.remove('cursor-hover');
+  };
+  
+  function updateHoverListeners() {
+    const hoverables = document.querySelectorAll('a, button, .btn, .filter-btn, .glass-card, .social-icon-wrapper, .contact-item, .proj-link, .timeline-item');
+    hoverables.forEach(item => {
+      item.removeEventListener('mouseenter', addHoverClass);
+      item.removeEventListener('mouseleave', removeHoverClass);
+      
+      item.addEventListener('mouseenter', addHoverClass);
+      item.addEventListener('mouseleave', removeHoverClass);
+    });
+  }
+  
+  updateHoverListeners();
+  
+  // Expose updating hover listeners globally
+  window.updateCursorHoverListeners = updateHoverListeners;
+  
+  // Press/Click effects
+  window.addEventListener('mousedown', () => {
+    glow.classList.add('cursor-active');
+  });
+  
+  window.addEventListener('mouseup', () => {
+    glow.classList.remove('cursor-active');
+  });
+}
+

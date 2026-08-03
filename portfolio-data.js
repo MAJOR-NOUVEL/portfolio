@@ -38,7 +38,8 @@ const portfolioData = {
     {
       role: "Web Developer Intern",
       company: "Blockly Technologies",
-      period: "Jun 2024 – Aug 2024",
+      period: "May 2024 – Jul 2024",
+      certificateUrl: "https://drive.google.com/file/d/1JOc-XlNvvKtDly9pXJ8eVl5VbrPna3Tw/view?usp=drive_link",
       description: [
         "Developed responsive, scalable web applications using React.js and JavaScript, improving application performance through systematic debugging.",
         "Designed and integrated REST APIs to support data-driven features; worked with SQL databases for efficient data storage, retrieval, and management.",
@@ -49,6 +50,7 @@ const portfolioData = {
       role: "Technical Content Writer Intern",
       company: "GeeksforGeeks",
       period: "Jan 2024 – Dec 2024",
+      certificateUrl: "https://drive.google.com/file/d/1ydc23sUHR_0105ZXESIGgzRDn4sTFT8g/view?usp=sharing",
       description: [
         "Authored high-quality technical articles on programming, DSA, and software engineering topics for a global developer audience.",
         "Translated complex computer science concepts into clear, structured, and search-engine-optimized (SEO) content for beginner and intermediate developers.",
