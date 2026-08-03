@@ -331,7 +331,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 90%;
   max-width: var(--max-width);
   height: 64px;
-  background: rgba(10, 8, 22, 0.45);
+  background: rgba(2, 4, 10, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -344,7 +344,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar.scrolled {
   top: 10px;
   height: 56px;
-  background: rgba(4, 3, 10, 0.85);
+  background: rgba(2, 4, 10, 0.85);
   border-color: rgba(255, 255, 255, 0.09);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
@@ -465,7 +465,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + 70px);
   position: relative;
 }
 
