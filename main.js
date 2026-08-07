@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectFilters();
   initContactForm();
   initScrollReveal();
-  initCustomCursor();
+
 
   // Initialize Lucide Icons initially and after modifications
   lucide.createIcons();
@@ -302,9 +302,20 @@ function renderAchievementsAndCertifications() {
     certificationsList.innerHTML = portfolioData.certifications.map(cert => `
       <li class="certification-item">
         <span class="list-bullet"></span>
-        <div class="certification-details">
-          <span class="cert-name">${cert.name}</span>
-          <span class="cert-issuer">${cert.issuer}</span>
+        <div class="certification-content-wrapper">
+          <div class="certification-details">
+            <span class="cert-name">${cert.name}</span>
+            <span class="cert-issuer">${cert.issuer}</span>
+          </div>
+          ${cert.url ? `
+            <a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="cert-link" title="View Certificate">
+              <i data-lucide="external-link"></i>
+            </a>
+          ` : `
+            <span class="cert-link disabled" title="Certificate Link coming soon">
+              <i data-lucide="link-2"></i>
+            </span>
+          `}
         </div>
       </li>
     `).join('');
@@ -655,75 +666,5 @@ function initScrollReveal() {
   window.refreshScrollReveal = observeElements;
 }
 
-// ==========================================
-// 4. CUSTOM TRAILING CURSOR EFFECT
-// ==========================================
-function initCustomCursor() {
-  // Disable custom cursor on mobile/touch screens
-  if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) {
-    return;
-  }
-  
-  const glow = document.getElementById('custom-cursor-glow');
-  if (!glow) return;
-  
-  // Show cursor element
-  glow.style.display = 'block';
-  
-  const speed = 0.14; // Lerp factor
-  
-  let mouse = { x: -100, y: -100 };
-  let glowPos = { x: -100, y: -100 };
-  
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-  
-  function animate() {
-    // Glow position lags with lerp
-    glowPos.x += (mouse.x - glowPos.x) * speed;
-    glowPos.y += (mouse.y - glowPos.y) * speed;
-    
-    // Position using 3d translation and offset center
-    glow.style.transform = `translate3d(${glowPos.x}px, ${glowPos.y}px, 0) translate(-50%, -50%)`;
-    
-    requestAnimationFrame(animate);
-  }
-  
-  animate();
-  
-  const addHoverClass = () => {
-    glow.classList.add('cursor-hover');
-  };
-  
-  const removeHoverClass = () => {
-    glow.classList.remove('cursor-hover');
-  };
-  
-  function updateHoverListeners() {
-    const hoverables = document.querySelectorAll('a, button, .btn, .filter-btn, .glass-card, .social-icon-wrapper, .contact-item, .proj-link, .timeline-item');
-    hoverables.forEach(item => {
-      item.removeEventListener('mouseenter', addHoverClass);
-      item.removeEventListener('mouseleave', removeHoverClass);
-      
-      item.addEventListener('mouseenter', addHoverClass);
-      item.addEventListener('mouseleave', removeHoverClass);
-    });
-  }
-  
-  updateHoverListeners();
-  
-  // Expose updating hover listeners globally
-  window.updateCursorHoverListeners = updateHoverListeners;
-  
-  // Press/Click effects
-  window.addEventListener('mousedown', () => {
-    glow.classList.add('cursor-active');
-  });
-  
-  window.addEventListener('mouseup', () => {
-    glow.classList.remove('cursor-active');
-  });
-}
+
 

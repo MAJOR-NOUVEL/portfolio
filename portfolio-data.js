@@ -10,7 +10,7 @@ const portfolioData = {
     linkedin: "https://linkedin.com/in/vivek-saindane71",
     resumeUrl: "resume.pdf",
     web3formsKey: "4345f0bc-a21c-47fd-b841-06edb245aa85", // Get a free access key from https://web3forms.com to receive form submissions in your email
-    bio: "Motivated Software Engineer (graduating 2026, ECE) with hands-on experience in full-stack application development, REST APIs, and database-driven systems. Proficient in C++, Python, JavaScript, and SQL with strong foundations in Data Structures & Algorithms, OOP, DBMS, Operating Systems, and Computer Networks. Eager to contribute to large-scale software engineering projects and build scalable solutions."
+    bio: "Motivated Software Engineer (graduated 2026, ECE) with hands-on experience in full-stack application development, REST APIs, and database-driven systems. Proficient in C++, Python, JavaScript, and SQL with strong foundations in Data Structures & Algorithms, OOP, DBMS, Operating Systems, and Computer Networks. Eager to contribute to large-scale software engineering projects and build scalable solutions."
   },
   skills: [
     {
@@ -143,11 +143,13 @@ const portfolioData = {
   certifications: [
     {
       name: "NPTEL – Programming and Problem Solving in C",
-      issuer: "IIT / National Programme on Technology Enhanced Learning"
+      issuer: "IIT / National Programme on Technology Enhanced Learning",
+      url: "https://drive.google.com/file/d/1-US6ypXP1pEEDM6dJh94BGa89BNMgE65/view?usp=sharing"
     },
     {
       name: "Google Cloud – Introduction to Generative AI",
-      issuer: "Google Cloud"
+      issuer: "Google Cloud",
+      url: ""
     }
   ]
 };
