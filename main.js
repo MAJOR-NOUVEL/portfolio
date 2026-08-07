@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectFilters();
   initContactForm();
   initScrollReveal();
-
+  initCustomCursor();
 
   // Initialize Lucide Icons initially and after modifications
   lucide.createIcons();
@@ -664,6 +664,87 @@ function initScrollReveal() {
   
   // Expose it to re-run on dynamic render
   window.refreshScrollReveal = observeElements;
+}
+
+// ==========================================
+// 4. CUSTOM TRAILING AMBIENT BACKGROUND GLOW
+// ==========================================
+function initCustomCursor() {
+  // Disable on mobile/touch screens
+  if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) {
+    return;
+  }
+  
+  const glow = document.getElementById('ambient-cursor-glow');
+  if (!glow) return;
+  
+  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let glowPos = { x: mouse.x, y: mouse.y };
+  
+  // Lerp tracking speed (makes the glow slide smoothly behind the pointer)
+  const speed = 0.08;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    
+    // Make sure glow is visible when mouse moves
+    glow.style.opacity = '1';
+  });
+  
+  // Fade out when cursor goes out of the document/window focus
+  document.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+  
+  document.addEventListener('mouseenter', () => {
+    glow.style.opacity = '1';
+  });
+  
+  window.addEventListener('blur', () => {
+    glow.style.opacity = '0';
+  });
+  
+  window.addEventListener('focus', () => {
+    glow.style.opacity = '1';
+  });
+  
+  function animate() {
+    // Smoothen the movement with lerp
+    glowPos.x += (mouse.x - glowPos.x) * speed;
+    glowPos.y += (mouse.y - glowPos.y) * speed;
+    
+    glow.style.transform = `translate3d(${glowPos.x}px, ${glowPos.y}px, 0) translate(-50%, -50%)`;
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+  
+  // Hover effect to enlarge the glow over interactive elements
+  const addHover = () => {
+    glow.classList.add('glow-hover');
+  };
+  
+  const removeHover = () => {
+    glow.classList.remove('glow-hover');
+  };
+  
+  function updateHoverListeners() {
+    const hoverables = document.querySelectorAll('a, button, .btn, .filter-btn, .glass-card, .social-icon-wrapper, .contact-item, .proj-link, .timeline-item');
+    hoverables.forEach(item => {
+      item.removeEventListener('mouseenter', addHover);
+      item.removeEventListener('mouseleave', removeHover);
+      
+      item.addEventListener('mouseenter', addHover);
+      item.addEventListener('mouseleave', removeHover);
+    });
+  }
+  
+  updateHoverListeners();
+  
+  // Expose updating hover listeners globally
+  window.updateCursorHoverListeners = updateHoverListeners;
 }
 
 
